@@ -16,12 +16,14 @@ namespace CqrsMediatrExample.Controllers
 		public ProductsController(IMediator mediator) => _mediator = mediator;
 
 		[HttpGet]
+		[Route("GetProducts")]
 		public async Task<ActionResult> GetProducts()
 		{
 			var products = await _mediator.Send(new GetProductsQuery());
+            var products2 = await _mediator.Send(new GetProductsQuery2());
 
-			return Ok(products);
-		}
+            return Ok(products2);
+        }
 
 		[HttpGet("{id:int}", Name = "GetProductById")]
 		public async Task<ActionResult> GetProductById(int id)

@@ -22,7 +22,7 @@ namespace CqrsMediatrExample
 		{
 			services.AddMediatR(typeof(Startup));
 			services.AddSingleton<FakeDataStore>();
-			services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+			//services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
 
 			services.AddControllers();
 		}

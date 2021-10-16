@@ -7,13 +7,23 @@ using System.Threading.Tasks;
 
 namespace CqrsMediatrExample.Handlers
 {
-	public class GetProductsHandler : IRequestHandler<GetProductsQuery, IEnumerable<Product>>
+	public class GetProductsHandler : 
+        IRequestHandler<GetProductsQuery, IEnumerable<Product>>,
+        IRequestHandler<GetProductsQuery2, IEnumerable<Product>>
 	{
 		private readonly FakeDataStore _fakeDataStore;
 
 		public GetProductsHandler(FakeDataStore fakeDataStore) => _fakeDataStore = fakeDataStore;
 
 		public async Task<IEnumerable<Product>> Handle(GetProductsQuery request,
-			CancellationToken cancellationToken) => await _fakeDataStore.GetAllProducts();
-	}
+			CancellationToken cancellationToken)
+        {
+            return await _fakeDataStore.GetAllProducts();
+        }
+
+        public async Task<IEnumerable<Product>> Handle(GetProductsQuery2 request, CancellationToken cancellationToken)
+        {
+            return await _fakeDataStore.GetAllProducts();
+        }
+    }
 }
