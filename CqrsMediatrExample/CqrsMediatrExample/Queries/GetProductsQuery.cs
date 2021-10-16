@@ -7,5 +7,6 @@ namespace CqrsMediatrExample.Queries
 
     public class GetProductsQuery2: IRequest<IEnumerable<Product>>
     {
+        public string Debug { get; } = "test debug string";
     }
 }

@@ -2,6 +2,7 @@
 using CqrsMediatrExample.Queries;
 using MediatR;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,6 +24,7 @@ namespace CqrsMediatrExample.Handlers
 
         public async Task<IEnumerable<Product>> Handle(GetProductsQuery2 request, CancellationToken cancellationToken)
         {
+            Debug.WriteLine(request.Debug);
             return await _fakeDataStore.GetAllProducts();
         }
     }
