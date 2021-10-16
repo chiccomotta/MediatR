@@ -27,11 +27,11 @@ namespace CqrsMediatrExample.DataStore
 		public async Task<IEnumerable<Product>> GetAllProducts() => await Task.FromResult(_products);
 
 		public async Task<Product> GetProductById(int id) => 
-			await Task.FromResult(_products.Single(p => p.Id == id));
+			await Task.FromResult(_products.FirstOrDefault(p => p.Id == id));
 
 		public async Task EventOccured(Product product, string evt)
 		{
-			_products.Single(p => p.Id == product.Id).Name = $"{product.Name} evt: {evt}";
+			_products.FirstOrDefault(p => p.Id == product.Id).Name = $"{product.Name} evt: {evt}";
 			await Task.CompletedTask;
 		}
 	}

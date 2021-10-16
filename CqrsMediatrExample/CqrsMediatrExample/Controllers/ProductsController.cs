@@ -34,6 +34,7 @@ namespace CqrsMediatrExample.Controllers
 		}
 
 		[HttpPost]
+		[Route("AddProduct")]
 		public async Task<ActionResult> AddProduct([FromBody]Product product)
 		{
 			var productToReturn = await _mediator.Send(new AddProductCommand(product));
