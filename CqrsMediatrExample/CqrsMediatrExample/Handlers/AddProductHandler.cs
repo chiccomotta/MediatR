@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace CqrsMediatrExample.Handlers
 {
-	public class AddProductHandler : IRequestHandler<AddProductCommand, Product>
-	{
+	public class AddProductHandler : IRequestHandler<AddProductCommand, Product>,
+        IRequestHandler<AddProductCommand2, Unit>
+    {
 		private readonly FakeDataStore _fakeDataStore;
 
 		public AddProductHandler(FakeDataStore fakeDataStore) => _fakeDataStore = fakeDataStore;
@@ -21,5 +22,10 @@ namespace CqrsMediatrExample.Handlers
 			
 			return request.Product;
 		}
-	}
+
+        public Task<Unit> Handle(AddProductCommand2 request, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(Unit.Value);
+        }
+    }
 }
